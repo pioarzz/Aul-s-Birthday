@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Happy Birthday Sayanggkuu</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        background-color: #ba7373;
+        padding: 20px;
+        overflow-y: auto;
+      }
+
+      img {
+        max-width: 25%;
+        height: auto;
+        margin-bottom: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      }
+
+      .typing-text {
+        font-size: 20px;
+        overflow: hidden;
+        max-width: 100%;
+        white-space: normal;
+        word-break: break-word;
+        text-align: center;
+      }
+
+      @media (max-width: 1000px) {
+        .typing-text {
+          font-size: 18px;
+        }
+      }
+
+      audio {
+        display: none;
+      }
+
+      #whatsapp-button {
+        display: none;
+        margin-top: 20px;
+        padding: 10px 20px;
+        font-size: 18px;
+        background-color: #25d366;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      }
+
+      #whatsapp-button:hover {
+        background-color: #20b958;
+      }
+    </style>
+  </head>
+  <body>
+    <img src="aul.jpg" alt="Foto" />
+    <div class="typing-text" id="typing"></div>
+
+    <audio id="background-music" autoplay loop>
+      <source src="Backsound.mp3" type="audio/mpeg" />
+      Your browser does not support the audio element.
+    </audio>
+
+    <!-- Tombol WhatsApp -->
+    <button id="whatsapp-button" onclick="window.location.href='https://wa.me/6289506372378?text=Terimakasih'">Reply to message</button>
+
+    <script>
+      const texts = [
+        'Happy Birthday to the most beautiful girl in my life 💌',
+        'I’m so grateful to have you in my life',
+        'I hope today brings you as much happiness as you bring me every day..',
+        'On your special day, I just want to remind you how much you mean to me',
+        'You make my world brighter, my heart happier, and my life complete',
+        'On this special day',
+        'I wish for all your dreams to bloom like roses',
+        'and may our love grow stronger with every sunrise',
+        'Forever and always, you are my everything',
+        'I Lovee Youuu',
+      ];
+
+      let index = 0;
+      const typingElement = document.getElementById('typing');
+      const typingSpeed = 200; // Kecepatan mengetik
+      const whatsappButton = document.getElementById('whatsapp-button'); // Tombol WhatsApp
+
+      function typeText() {
+        if (index < texts.length) {
+          const paragraph = document.createElement('p');
+          paragraph.textContent = '';
+          typingElement.appendChild(paragraph);
+          let charIndex = 0;
+
+          function typeChar() {
+            if (charIndex < texts[index].length) {
+              paragraph.textContent += texts[index].charAt(charIndex);
+              charIndex++;
+              setTimeout(typeChar, typingSpeed);
+            } else {
+              index++;
+              if (index < texts.length) {
+                setTimeout(typeText, 1000);
+              } else {
+                // Tampilkan tombol WhatsApp setelah semua teks selesai diketik
+                whatsappButton.style.display = 'block';
+              }
+            }
+          }
+
+          typeChar();
+        }
+      }
+
+      typeText(); // Mulai animasi mengetik
+    </script>
+  </body>
+</html>
